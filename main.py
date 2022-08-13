@@ -13,5 +13,5 @@ def shorten_url(token, url):
 
 
 if __name__ == '__main__':
-    dvmn_url = "https://dmvn.org"
-    print('Битлинк', shorten_url(TOKEN, dvmn_url))
+    user_url = input("Please enter url: ")
+    print('Битлинк', shorten_url(TOKEN, user_url))
