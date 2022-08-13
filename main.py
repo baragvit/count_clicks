@@ -1,8 +1,9 @@
+import os
 from urllib.parse import urlparse
 
 import requests
+from dotenv import load_dotenv
 
-TOKEN = 'bea9269e049610978b0d58bc7138ad57fb3ab5de'
 API_SHORTEN_URL = 'https://api-ssl.bitly.com/v4/bitlinks'
 API_URL_COUNTER = 'https://api-ssl.bitly.com/v4/bitlinks/{}/clicks/summary'
 API_BITLINK_INFO = 'https://api-ssl.bitly.com/v4/bitlinks/{}'
@@ -45,11 +46,13 @@ def is_bitlink(token, user_url):
 
 
 if __name__ == '__main__':
+    load_dotenv()
+    api_token = os.environ['API_TOKEN']
     user_url = input("Please enter url: ")
-    is_link = is_bitlink(TOKEN, user_url)
+    is_link = is_bitlink(api_token, user_url)
     func = count_clicks if is_link else shorten_url
     try:
-        result = func(TOKEN, user_url)
+        result = func(api_token, user_url)
         print(result if is_link else 'Битлинк: ' + result)
     except requests.exceptions.HTTPError as err:
         print("You have entered incorrect url")
