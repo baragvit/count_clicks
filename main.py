@@ -14,4 +14,8 @@ def shorten_url(token, url):
 
 if __name__ == '__main__':
     user_url = input("Please enter url: ")
-    print('Битлинк', shorten_url(TOKEN, user_url))
+    try:
+        url = shorten_url(TOKEN, user_url)
+        print('Битлинк', url)
+    except requests.exceptions.HTTPError as e:
+        print("You have entered incorrect url")
