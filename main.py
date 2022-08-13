@@ -1,19 +1,17 @@
 import requests
 
-me_url = 'https://api-ssl.bitly.com/v4/user'
-
-headers = {
-    'Authorization': 'Bearer bea9269e049610978b0d58bc7138ad57fb3ab5de'
-}
-response = requests.get(me_url, headers=headers)
-print(response.text)
+TOKEN = 'bea9269e049610978b0d58bc7138ad57fb3ab5de'
+API_SHORTEN_URL = 'https://api-ssl.bitly.com/v4/bitlinks'
 
 
+def shorten_url(token, url):
+    json = {"long_url": url}
+    headers = {'Authorization': f'Bearer {token}'}
+    response = requests.post(API_SHORTEN_URL, headers=headers, json=json)
+    response.raise_for_status()
+    return response.json()['link']
 
-data = {
-    "long_url": "http://dvmn.org"
-}
 
-shorten_url = 'https://api-ssl.bitly.com/v4/bitlinks'
-response = requests.post(shorten_url, headers=headers, json=data)
-print(response.json())
+if __name__ == '__main__':
+    dvmn_url = "https://dmvn.org"
+    print('Битлинк', shorten_url(TOKEN, dvmn_url))
