@@ -10,9 +10,9 @@ API_BITLINK_INFO = 'https://api-ssl.bitly.com/v4/bitlinks/{}'
 
 
 def shorten_url(token, url):
-    headers = {'Authorization': f'Bearer {token}'}
     response = requests.post(
-        API_SHORTEN_URL, headers=headers,
+        API_SHORTEN_URL,
+        headers=get_auth_header(token),
         json={"long_url": url}
     )
     response.raise_for_status()
@@ -21,10 +21,9 @@ def shorten_url(token, url):
 
 def count_clicks(token, user_input):
     parsed_url = urlparse(user_input)
-    headers = {'Authorization': f'Bearer {token}'}
     response = requests.get(
         API_URL_COUNTER.format(f'{parsed_url.netloc}{parsed_url.path}'),
-        headers=headers
+        headers=get_auth_header(token)
     )
     response.raise_for_status()
     return response.json()['total_clicks']
@@ -32,12 +31,15 @@ def count_clicks(token, user_input):
 
 def is_bitlink(token, user_url):
     parsed_url = urlparse(user_url)
-    headers = {'Authorization': f'Bearer {token}'}
     response = requests.get(
         API_BITLINK_INFO.format(f'{parsed_url.netloc}{parsed_url.path}'),
-        headers=headers
+        headers=get_auth_header(token)
     )
     return response.ok
+
+
+def get_auth_header(token):
+    return {'Authorization': f'Bearer {token}'}
 
 
 if __name__ == '__main__':
