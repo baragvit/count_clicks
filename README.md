@@ -19,7 +19,7 @@ pip install -r requirements.txt
 Get api bitly api token, place it to .env file in count_clicks directory
 ```commandline
 cd count_clicks
-echo "API_TOKEN=bea0000e049610978b0d58bc7138ad57fb3ab5de" >> .env
+echo "BITLY_API_TOKEN=bea0000e049610978b0d58bc7138ad57fb3ab5de" >> .env
 ```
 ### Project Goals
 
