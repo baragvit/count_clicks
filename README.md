@@ -2,7 +2,7 @@
 Shorten provided urls and provide there count  
 Usage
 ```
-python3 main.py
+python3 main.py https://dvmn.org
 ```
 
 ### How to install

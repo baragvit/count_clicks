@@ -1,3 +1,4 @@
+import argparse
 import os
 from urllib.parse import urlparse
 
@@ -38,10 +39,18 @@ def is_bitlink(token, user_url):
     return response.ok
 
 
+def get_url_from_args():
+    global args
+    parser = argparse.ArgumentParser()
+    parser.add_argument("url")
+    return parser.parse_args().url
+
+
 if __name__ == '__main__':
+    get_url_from_args()
+    user_url = get_url_from_args
     load_dotenv()
     api_token = os.environ['BITLY_API_TOKEN']
-    user_url = input("Please enter url: ")
     try:
         if is_bitlink(api_token, user_url):
             clicks_count = count_clicks(api_token, user_url)
