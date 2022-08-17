@@ -5,6 +5,7 @@ from urllib.parse import urlparse
 import requests
 from dotenv import load_dotenv
 
+
 API_SHORTEN_URL = 'https://api-ssl.bitly.com/v4/bitlinks'
 API_URL_COUNTER = 'https://api-ssl.bitly.com/v4/bitlinks/{}/clicks/summary'
 API_BITLINK_INFO = 'https://api-ssl.bitly.com/v4/bitlinks/{}'
