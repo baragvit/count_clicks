@@ -46,7 +46,6 @@ def get_url_from_args():
 
 
 if __name__ == '__main__':
-    get_url_from_args()
     user_url = get_url_from_args()
     load_dotenv()
     api_token = os.environ['BITLY_API_TOKEN']
